@@ -1,0 +1,29 @@
+{
+  "name": "web-tails",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npm run scss:lint && npm run js:lint",
+    "js:lint": "eslint . --ext .js -c .eslintrc.js --ignore-path .eslintignore",
+    "scss:lint": "stylelint '**/*.scss'",
+    "scss:lint:check": "stylelint-config-prettier-check",
+    "js:build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "node-sass": "^4.12.0",
+    "rollup": "^1.23.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-terser": "^5.1.2",
+    "stylelint": "^11.1.1",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-scss": "^3.11.1"
+  }
+}
