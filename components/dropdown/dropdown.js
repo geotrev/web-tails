@@ -1,26 +1,25 @@
 import styles from "./styles.scss"
 
-export class Dropdown extends HTMLElement {
+class Dropdown extends HTMLElement {
   constructor() {
     super()
     this.shadow = this.attachShadow({ mode: "open" })
-    this.renderStyle()
+    this.setStyles()
     this.render()
   }
 
-  renderStyle() {
+  setStyles() {
     const style = document.createElement("style")
     style.textContent = styles
     this.shadow.appendChild(style)
   }
 
   render() {
-    const wrapper = document.createElement("div")
+    const wrapper = document.createElement("p")
+    const name = this.getAttribute("name")
 
     wrapper.innerHTML = `
-      <p>
-        <div class="some-selector"></div>
-      </p>
+      <div class="some-class">Hi, I'm ${name}!</div>
     `
 
     this.shadow.appendChild(wrapper)
