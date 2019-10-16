@@ -1,7 +1,7 @@
 ## web-tails components
 
-- Runs a demo with parcel/serve
-- Bundles code with rollup.
+- Runs a demo with `serve`
+- Bundles code with `rollup`
 
 ## NPM interface
 
