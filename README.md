@@ -1,7 +1,7 @@
 ## web-tails components
 
-- Runs a demo with `serve`
-- Bundles code with `rollup`
+- Runs a demo with `npm run watch`
+- Bundle code with `npm run build`
 
 ## NPM interface
 

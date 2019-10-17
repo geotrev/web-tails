@@ -4,7 +4,7 @@ import resolve from "rollup-plugin-node-resolve"
 import postcss from "rollup-plugin-postcss"
 import path from "path"
 
-const PUBLIC_PATH = "public"
+const PUBLIC_PATH = path.resolve(__dirname, "public")
 
 export default {
   input: path.resolve(__dirname, "src/components/index.js"),

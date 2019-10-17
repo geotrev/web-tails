@@ -9,12 +9,12 @@ const componentPaths = glob.sync(path.resolve(__dirname, "src/components/**/inde
 
 componentPaths.forEach(component => {
   const parts = component.split("/")
-  const input = parts[parts.length - 2] // e.g. "modal"
+  const name = parts[parts.length - 2]
 
   configs.push({
     input: component,
     output: {
-      file: path.resolve(__dirname, `dist/${input}.js`),
+      file: path.resolve(__dirname, `dist/${name}.js`),
       format: "umd",
     },
     plugins: [
