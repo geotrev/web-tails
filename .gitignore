@@ -4,3 +4,4 @@ npm-error.log*
 
 dist/
 node_modules/
+public/bundle.js

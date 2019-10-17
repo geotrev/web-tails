@@ -1,6 +1,6 @@
 import resolve from "rollup-plugin-node-resolve"
 import postcss from "rollup-plugin-postcss"
-// import { terser } from "rollup-plugin-terser"
+import { terser } from "rollup-plugin-terser"
 import path from "path"
 import glob from "glob"
 
@@ -20,17 +20,17 @@ componentPaths.forEach(component => {
     plugins: [
       resolve(),
       postcss({ modules: false, extract: false, inject: false, minimize: true }),
-      // terser({
-      //   output: {
-      //     comments: (_, comment) => {
-      //       const { value, type } = comment
+      terser({
+        output: {
+          comments: (_, comment) => {
+            const { value, type } = comment
 
-      //       if (type === "comment2") {
-      //         return /@preserve|@license|@cc_on/i.test(value)
-      //       }
-      //     },
-      //   },
-      // }),
+            if (type === "comment2") {
+              return /@preserve|@license|@cc_on/i.test(value)
+            }
+          },
+        },
+      }),
     ],
   })
 })
