@@ -5,7 +5,7 @@ import path from "path"
 import glob from "glob"
 
 const configs = []
-const componentPaths = glob.sync(path.resolve(__dirname, "components/**/index.js"))
+const componentPaths = glob.sync(path.resolve(__dirname, "src/components/**/index.js"))
 
 componentPaths.forEach(component => {
   const parts = component.split("/")

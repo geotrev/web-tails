@@ -7,7 +7,7 @@ import path from "path"
 const PUBLIC_PATH = "public"
 
 export default {
-  input: path.resolve(__dirname, "components/index.js"),
+  input: path.resolve(__dirname, "src/components/index.js"),
   output: {
     file: path.resolve(__dirname, "public/bundle.js"),
     format: "umd",
