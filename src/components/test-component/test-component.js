@@ -1,6 +1,6 @@
 import styles from "./styles.scss"
 
-class Dropdown extends HTMLElement {
+class TestComponent extends HTMLElement {
   constructor() {
     super()
     this.shadow = this.attachShadow({ mode: "open" })
@@ -27,5 +27,5 @@ class Dropdown extends HTMLElement {
 }
 
 if (typeof window !== "undefined") {
-  customElements.define("tails-dropdown", Dropdown)
+  customElements.define("tails-test", TestComponent)
 }
