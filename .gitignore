@@ -3,5 +3,6 @@ yarn-error.log*
 npm-error.log*
 
 dist/
+lib/
 node_modules/
 public/bundle.js

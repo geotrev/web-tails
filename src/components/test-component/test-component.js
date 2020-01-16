@@ -1,32 +1,45 @@
+import { BaseComponent } from "../base-component"
+import { canRender } from "utils"
 import styles from "./styles.scss"
 
-if (typeof window !== "undefined") {
-  customElements.define(
-    "tails-test", 
-    class extends HTMLElement {
-      constructor() {
-        super()
-        this.shadow = this.attachShadow({ mode: "open" })
-        this.setStyles()
-        this.render()
-      }
-
-      setStyles() {
-        const style = document.createElement("style")
-        style.textContent = styles
-        this.shadow.appendChild(style)
-      }
-
-      render() {
-        const wrapper = document.createElement("p")
-        const name = this.getAttribute("name")
-
-        wrapper.innerHTML = `
-          <div class="some-class">Hi, I'm ${name}!</div>
-        `
-
-        this.shadow.appendChild(wrapper)
-      }
+if (canRender) {
+  class TailsTest extends BaseComponent {
+    constructor() {
+      super()
     }
-  )
+
+    setStyles() {
+      return styles
+    }
+
+    setActiveAttributes() {
+      return ["name"]
+    }
+
+    didConnect() {
+      // do in
+    }
+
+    didRender() {
+      // do initial render checks
+    }
+
+    activeAttributeUpdated() {
+      // do stuff only ifa  specific property updated
+    }
+
+    didDisconnect() {
+      // do teardown logic
+    }
+
+    documentChanged() {
+      // moved to new document context
+    }
+
+    render() {
+      return `<div class="some-class"><p>Whaddup Mr. ${this.name}.</p></div>`
+    }
+  }
+
+  customElements.define("tails-test", TailsTest)
 }
