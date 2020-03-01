@@ -4,7 +4,6 @@ import commonjs from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"
 import alias from "@rollup/plugin-alias"
 import postcss from "rollup-plugin-postcss"
-// import babel from "rollup-plugin-babel"
 // import { terser } from "rollup-plugin-terser"
 
 const configs = []
@@ -26,7 +25,6 @@ componentPaths.forEach(component => {
       alias({
         entries: [{ find: "utils", replacement: "../../utils" }],
       }),
-      // babel(),
       postcss({
         modules: false,
         extract: false,
