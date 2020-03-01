@@ -1,1 +1,1 @@
-export { register } from "./can-render"
+export { register } from "./register"
