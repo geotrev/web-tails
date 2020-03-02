@@ -3,6 +3,7 @@ import path from "path"
 import commonjs from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"
 import postcss from "rollup-plugin-postcss"
+import { terser } from "rollup-plugin-terser"
 
 const configs = []
 const external = []
@@ -28,25 +29,29 @@ files.forEach(input => {
   const relativePathIndex = parts.indexOf("src")
   const relativePath = parts.slice(relativePathIndex + 1).join("/")
 
+  const plugins = [
+    resolve(),
+    commonjs(),
+    postcss({
+      modules: false,
+      extract: false,
+      inject: false,
+      minimize: true,
+    }),
+  ]
+
+  if (process.env.BABEL_ENV === "prod") plugins.push(terser())
+
   // Get both cjs and esm configs
   const newConfigs = formats.map(format => {
     return {
       external,
       input,
+      plugins,
       output: {
         format,
         file: path.resolve(`lib/${format}/${relativePath}`),
       },
-      plugins: [
-        resolve(),
-        commonjs(),
-        postcss({
-          modules: false,
-          extract: false,
-          inject: false,
-          minimize: true,
-        }),
-      ],
     }
   })
 

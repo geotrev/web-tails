@@ -7,7 +7,7 @@
   "scripts": {
     "start": "rollup -c rollup.config.app.js -w",
     "build": "rm -rf lib && rollup -c",
-    "build:prod": "rm -rf lib && BABEL_ENV='production' rollup -c",
+    "build:prod": "rm -rf lib && BABEL_ENV='prod' rollup -c",
     "lint": "npm run scss:lint && npm run js:lint",
     "js:lint": "eslint . --ext .js -c .eslintrc.js --ignore-path .eslintignore"
   },
