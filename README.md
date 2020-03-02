@@ -9,5 +9,5 @@
 $ npm install web-tails
 ```
 
-- `import "web-tails/dist/COMPONENT_NAME`: get a component
-- `import "web-tails/dist/components`: get everything
+- `import "web-tails/lib/mini-greeter`: Get component with tag name `mini-greeter`.
+- `import "web-tails`: Get everything.

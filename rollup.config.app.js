@@ -1,7 +1,6 @@
 import path from "path"
 import serve from "rollup-plugin-serve"
 import commonjs from "@rollup/plugin-commonjs"
-import alias from "@rollup/plugin-alias"
 import livereload from "rollup-plugin-livereload"
 import resolve from "@rollup/plugin-node-resolve"
 import postcss from "rollup-plugin-postcss"
@@ -17,9 +16,6 @@ export default {
   plugins: [
     resolve(),
     commonjs(),
-    alias({
-      entries: [{ find: "utils", replacement: "../../utils" }],
-    }),
     serve({
       open: true,
       contentBase: PUBLIC_PATH,

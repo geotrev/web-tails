@@ -1,39 +1,50 @@
-import path from "path"
 import glob from "glob"
+import path from "path"
 import commonjs from "@rollup/plugin-commonjs"
 import resolve from "@rollup/plugin-node-resolve"
-import alias from "@rollup/plugin-alias"
 import postcss from "rollup-plugin-postcss"
-// import { terser } from "rollup-plugin-terser"
 
 const configs = []
-const componentPaths = glob.sync(path.resolve(__dirname, "src/components/**/index.js"))
+const external = []
+const formats = ["esm", "cjs"]
 
-componentPaths.forEach(component => {
-  const parts = component.split("/")
-  let name = parts[parts.length - 2]
+const files = glob.sync(path.resolve(__dirname, "src/**/*.js"))
 
-  configs.push({
-    input: component,
-    output: {
-      file: path.resolve(__dirname, `lib/${name}.js`),
-      format: "esm",
-    },
-    plugins: [
-      resolve(),
-      commonjs(),
-      alias({
-        entries: [{ find: "utils", replacement: "../../utils" }],
-      }),
-      postcss({
-        modules: false,
-        extract: false,
-        inject: false,
-        minimize: true,
-      }),
-      // terser(),
-    ],
+files.forEach(filePath => {
+  const parts = filePath.split("/")
+  const name = parts[parts.length - 1].slice(0, -3)
+  if (!name.includes("index")) external.push(`./${name}`, `../${name}`, `../../${name}`)
+})
+
+files.forEach(filePath => {
+  const parts = filePath.split("/")
+  const relativePathIndex = parts.indexOf("src")
+  const relativePath = parts.slice(relativePathIndex + 1).join("/")
+
+  const plugins = [
+    resolve(),
+    commonjs(),
+    postcss({
+      modules: false,
+      extract: false,
+      inject: false,
+      minimize: true,
+    }),
+  ]
+
+  const newConfigs = formats.map(format => {
+    return {
+      external,
+      input: filePath,
+      output: {
+        format,
+        file: path.resolve(`lib/${format}/${relativePath}`),
+      },
+      plugins,
+    }
   })
+
+  configs.push(...newConfigs)
 })
 
 export default configs
